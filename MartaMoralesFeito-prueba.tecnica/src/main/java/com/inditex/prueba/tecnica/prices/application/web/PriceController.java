@@ -1,6 +1,6 @@
 package com.inditex.prueba.tecnica.prices.application.web;
 
-import com.inditex.prueba.tecnica.prices.domain.model.Price;
+import com.inditex.prueba.tecnica.prices.application.web.model.PriceResponse;
 import com.inditex.prueba.tecnica.prices.domain.service.PriceService;
 import jakarta.validation.constraints.Min;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,13 +23,10 @@ public class PriceController {
     PriceService priceService;
 
     @GetMapping
-    ResponseEntity<PriceResponse> findPrice(@RequestParam  @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    ResponseEntity<PriceResponse> findPrice(@RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
                                             LocalDateTime applicationDate,
-                                       @RequestParam @Min(value = 1, message = "ProductId must be more than zero") Long productId,
-                                       @RequestParam @Min(value = 1, message = "BranId must be more than zero") Long brandId) {
-
-        Price price = priceService.findPrice(productId, brandId, applicationDate);
-        PriceResponse response = new PriceResponse(price);
-        return ResponseEntity.ok(response);
+                                            @RequestParam @Min(value = 1, message = "ProductId must be more than zero") Long productId,
+                                            @RequestParam @Min(value = 1, message = "BranId must be more than zero") Long brandId) {
+        return ResponseEntity.ok(priceService.findPrice(productId, brandId, applicationDate));
     }
 }

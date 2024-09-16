@@ -1,11 +1,10 @@
 package com.inditex.prueba.tecnica.prices.domain.service;
 
-import com.inditex.prueba.tecnica.prices.domain.model.Price;
+import com.inditex.prueba.tecnica.prices.application.web.model.PriceResponse;
 
 import java.time.LocalDateTime;
-import java.util.Date;
 
 public interface PriceService {
 
- Price findPrice(Long productId, Long brandId, LocalDateTime applicationDate);
+    PriceResponse findPrice(Long productId, Long brandId, LocalDateTime applicationDate);
 }
